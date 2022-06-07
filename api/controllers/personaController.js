@@ -1,5 +1,17 @@
 const { matchedData } = require("express-validator");
 const { handleHttpError } = require("../handlers/handleError");
+
+const admin = require("firebase-admin");
+
+
+const serviceAccount = require("../../serviceAccountKey.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseUrl: "https://psycho-7c867-default-rtdb.firebaseio.com"
+})
+
+
 const persona = require("../../models/nosql/persona");
 const { response } = require("express");
 
@@ -42,4 +54,24 @@ const loginPersona = async (req, res) => {
   }
 };
 
-module.exports = {registerPersona, loginPersona}
+/**
+ * Este controlador es el encargado de Actualizar los datos de una persona
+ * @param {*} req 
+ * @param {*} res 
+ */
+const updatePersona = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const userData = matchedData(req);
+    //[x]: Creamos un service para actualizar un usuario
+    const data = await authService.updateAccount(userId, userData);
+
+    res.send({ data });
+  } catch (err) {
+    handleHttpError(res, "ERROR_UPDATE_USER", err);
+  }
+};
+
+
+
+module.exports = {registerPersona, loginPersona, updatePersona}
