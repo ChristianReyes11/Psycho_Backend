@@ -5,11 +5,11 @@ const handleResults = require("../handlers/handleValidator");
 * validacion al registrar un usuario
 */
 const registerValidator = [
-   check("email").exists().notEmpty().isEmail(),
-   check("region").exists().notEmpty().isString().isLength({ min: 6, max: 18 }),
-   check("edad").exists().notEmpty().isNumeric().isLength({min: 2}),
-   check("genero").exists().notEmpty().isString(),
-   check("password").exists().notEmpty().isString().isLength({ min: 8, max: 16 }),
+   check("email").exists().notEmpty().withMessage("email Invalid").isEmail(),
+   check("region").exists().notEmpty().withMessage("region Invalid").isString().isLength({ min: 6, max: 18 }),
+   check("edad").exists().notEmpty().withMessage("edad Invalid").isNumeric().isLength({min: 2}),
+   check("genero").exists().notEmpty().withMessage("genero Invalid").isString(),
+   check("password").exists().notEmpty().withMessage("password Invalid").isString().isLength({ min: 8, max: 16 }),
    check("telefono").isNumeric(),
    handleResults,
 ];

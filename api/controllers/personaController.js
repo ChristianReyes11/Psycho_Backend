@@ -8,8 +8,10 @@ const registerPersona = (req, res) => {
     //console.log(req.body); //body todo lleno de ruido ¡innecesario!
     req = matchedData(req)
     console.log(req)
-    res.send({mssg: "muy bien"})
+    res.send({mssg: "**Usuario Registrado**"})
 }
+
+
 
 
 
