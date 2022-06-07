@@ -11,8 +11,17 @@ const registerPersona = (req, res) => {
     res.send({mssg: "**Usuario Registrado**"})
 }
 
+/**
+ * Este controlador es el encargado de logear a una persona
+ * @param {*} req 
+ * @param {*} res 
+ */
+ const loginPersona = (req, res) => {
+    req = matchedData(req)
+    console.log(req)
+    res.send({mssg: "**Bienvenido**"})
+}
 
 
 
-
-module.exports = {registerPersona}
+module.exports = {registerPersona, loginPersona}

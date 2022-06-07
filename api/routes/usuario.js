@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const {registerValidator} = require("../validators/registerValidator")
-
 const {registerPersona} = require("../controllers/personaController")
+const {loginValidator} = require("../validators/registerValidator")
+const {loginPersona} = require("../controllers/personaController")
 
 /**
  *     
@@ -21,6 +22,7 @@ router.post("/register", registerValidator, registerPersona);
  * Validar credencianles de  usuario
  */
 //router.post("/login", loginValidator, loginPersona);
+router.post("/login", loginValidator, loginPersona);
 
 /**
  * Editar a un usuario usando middleware para validar usuario
