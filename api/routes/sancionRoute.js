@@ -1,10 +1,8 @@
-const { check } = require("express-Router");
-const handleResults = require("../handlers/handleRouter");
+const {sancionValidator} = require("../validators/sancionValidator")
+const { registerCategoria } = require("../controllers/sancionController")
+const express = require("express");
+const router = express.Router()
 
-const sancionRouter = [
-   check("tipo").exists().notEmpty().withMessage("region Invalid").isString().isLength({ min: 6, max: 18 }),
-   check("fecha").exists().notEmpty().withMessage("edad Invalid").isDate(),
-   handleResults,
-];
+router.post("/register", sancionValidator, registersancion);
 
-module.exports = {sancionRouter}
+module.exports = router;
