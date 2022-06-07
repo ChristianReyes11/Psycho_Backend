@@ -1,10 +1,8 @@
-const { check } = require("express-Router");
-const handleResults = require("../handlers/handleRouter");
+const {tipo_personaValidator} = require("../validators/tipo_personaValidator")
+const { registerCategoria } = require("../controllers/tipo_personaController")
+const express = require("express");
+const router = express.Router()
 
-const tipo_personaRoutes = [
-   check("descripcion").exists().notEmpty().withMessage("descripcion Invalid").isString().isLength({ min: 6, max: 18 }),
-   check("id_permiso").exists().notEmpty().withMessage("id_permiso Invalid").isNumeric,
-   handleResults,
-];
+router.post("/register", tipo_personaValidator, registertipo_persona);
 
-module.exports = {tipo_personaRouter}
+module.exports = router;
