@@ -1,5 +1,5 @@
 const {sancionValidator} = require("../validators/sancionValidator")
-const { registerCategoria } = require("../controllers/sancionController")
+const { registersancion } = require("../controllers/sancionController")
 const express = require("express");
 const router = express.Router()
 
