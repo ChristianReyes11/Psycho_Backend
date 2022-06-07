@@ -1,0 +1,65 @@
+REST API DESIGN:
+    **Modelo persona**
+    Crear un usuario
+    editar un usuario
+    consultar un usuario
+    eliminar un usuario
+    
+    POST /api/user/register{
+        Procedimiento:{
+            1.- Validar Datos
+            2.- Verificar que no exista el correo
+            3.- Guardar registro
+            4.- Mandar token con datos de usuario ya creado
+        }
+    }
+    PUT /api/user/edit{
+        Procedimiento{
+            1.- 
+        }
+    }
+    POST /api/user/login
+    DELETE /api/user/:id_persona}
+
+
+
+    **Modelo permiso**
+    crear un permiso
+    editar un permiso
+    consultar un permiso
+    eliminar un permiso
+
+    POST /api/
+
+
+
+    **Modelo sancion**
+    crear una sancion
+    editar una sancion
+    consultar una sancion
+    eliminar una sancion
+
+
+
+    **Modelo foro**
+    crear un foro
+    editar un foro
+    Comentar en un foro
+    eliminar un foro (Finalizarlo)
+
+    POST /api/foro/createforo
+    PUT /api/foro/editforo
+    PUT /api/foro/comment
+    DELETE /api/foro/deleteforo
+
+
+    **Modelo categoria**
+    crear una categoria
+    editar una categoria
+    consultar una categoria
+    eliminar una categoria
+
+    POST /api/categoria/create
+    PUT /api/categoria/edit
+    
+    DELETE /api/categoria/:id_categoria
