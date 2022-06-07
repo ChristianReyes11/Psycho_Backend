@@ -1,11 +1,9 @@
 const { matchedData } = require("express-validator");
 const { handleHttpError } = require("../handlers/handleError");
-
-
-
-
 const persona = require("../../models/nosql/persona");
 const { response } = require("express");
+
+const db = require("../../config/firebase")
 
 /**
  * Aquí registramos a una persona
@@ -13,11 +11,13 @@ const { response } = require("express");
  * @param {*} req 
  * @param {*} res 
  */
-const registerPersona = (req, res) => {
+const registerPersona = async (req, res) => {
     //console.log(req.body); //body todo lleno de ruido ¡innecesario!
     req = matchedData(req)
+    const newPerson = {...req}
+    const resfire = await db.ref("persona").push(newPerson)
     console.log(req)
-    res.send({mssg: "**Usuario Registrado**"})
+    res.send({mssg: resfire})
 }
 
 /**
