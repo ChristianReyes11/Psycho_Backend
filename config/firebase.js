@@ -7,7 +7,12 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://psycho-7c867-default-rtdb.firebaseio.com"
 })
+//https://psycho-7c867-default-rtdb.firebaseio.com
 
 const db = admin.database();
 
 module.exports = db;
+
+//api/foro/ansiedad
+//api/foro/depresion
+//Tocken 
