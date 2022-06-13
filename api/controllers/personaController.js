@@ -13,16 +13,15 @@ const registerPersona = async (req, res) => {
     //console.log(req.body); //body todo lleno de ruido ¡innecesario!
     req = matchedData(req);
     const newPerson = { ...req };
-    var data = {};
-    data = await db
+    var data = await db
       .ref("persona")
       .get()
       .then((personas) => {
         return personas;
       });
     const emailAlreadyExist = data.forEach((persona) => {
-      const p = persona.val();
-      if (p.email === newPerson.email) {
+      const personafinded = persona.val();
+      if (personafinded.email === newPerson.email) {
         return true;
       }
     });
@@ -34,16 +33,6 @@ const registerPersona = async (req, res) => {
       db.ref("persona").push(newPerson);
       res.status(200).send({ success: true });
     }
-
-    // //> Respondemos al usuario con objeto de usuario creado
-    // db.ref("persona").once("value", function (snapshot) {
-    //   return snapshot.forEach(function (childSnapshot) {
-    //     var childData = childSnapshot.val();
-    //     if (childData.email === newPerson.email) {
-    //       res.status(200).send({ success: true, ...childData });
-    //     }
-    //   });
-    // });
   } catch (err) {
     console.log(err);
   }

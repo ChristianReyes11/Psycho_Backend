@@ -8,15 +8,14 @@ const readAnsiedad = async (req, res) => {
     //   const messages = snapshoot.val();
     //   res.send(messages);
     // });
-
-    const query = db.collection("cforum");
-    const result = await query.get();
-    const messages = result.docs.map((doc) => ({
-      id: doc.id,
-      name: doc.data().mensajes,
-    }));
-
-    res.send(messages);
+    req = matchedData(req);
+    const data = await db
+      .ref("cforum")
+      .get()
+      .then((message) => {
+        return message;
+      });
+    res.status(200).send({ success: true, data: data.val() });
   } catch (err) {
     handleHttpError(res, "Error en el controlador", err);
   }
@@ -33,4 +32,16 @@ const readDepresion = (req, res) => {
   }
 };
 
-module.exports = { readAnsiedad };
+const createAnsiedad = async (req, res) => {
+  try {
+    req = matchedData(req);
+    await db
+      .ref("cforum")
+      .push(req)
+      .then(() => {
+        res.status(200).send({ success: true });
+      });
+  } catch (err) {}
+};
+
+module.exports = { readAnsiedad, createAnsiedad };

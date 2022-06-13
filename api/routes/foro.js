@@ -10,7 +10,10 @@ const {
 const { foroValidator } = require("../validators/foroValidator");
 
 //* CONTROLLERS
-const { readAnsiedad } = require("../controllers/foroController");
+const {
+  readAnsiedad,
+  createAnsiedad,
+} = require("../controllers/foroController");
 
 /**
  * POST /api/foro/ansiedad
@@ -24,8 +27,17 @@ router.post("/delete", foroValidator /*deleteForo*/);
 /**
  * >obtener mensajes en ese foro
  */
-router.get("/ansiedad", /*firebaseTokenMiddleware,*/ readAnsiedad);
+router.get("/ansiedad", /* firebaseTokenMiddleware, */ readAnsiedad);
 
+/**
+ * > Registrar mensajes en es foro
+ */
+router.post(
+  "/ansiedad",
+  // firebaseTokenMiddleware,
+  foroValidator,
+  createAnsiedad
+);
 //
 //
 

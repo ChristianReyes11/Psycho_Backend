@@ -5,9 +5,11 @@ const handleResults = require("../handlers/handleValidator");
  * validacion al dar de alta un foro
  */
 const foroValidator = [
-  // check("fecha_publicacion").exists().notEmpty().isDate, //ESTE SE DARA EN EL CONTROLLER
-  check("id_persona").exists().notEmpty().isNumeric,
-  check("id_categoria").exists().notEmpty().isNumeric,
+  check("message")
+    .exists()
+    .notEmpty()
+    .isString()
+    .isLength({ min: 4, max: 200 }),
   handleResults,
 ];
 
